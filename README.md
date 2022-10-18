@@ -1,5 +1,5 @@
 # rust-downloadr
-download arweave tx-data in rust
+download arweave tx-data in rust by splitting it up in chunks of data 
 
 
 Run:
