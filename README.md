@@ -1,6 +1,7 @@
 # rust-downloadr
 download arweave tx-data in rust by splitting it up in chunks of data appending to a vector and printing to file
 
+If you get UnexpectedEof error and you know tx_id is correct then just try again.
 
 Run:
 
