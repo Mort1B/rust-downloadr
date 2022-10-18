@@ -6,7 +6,6 @@ extern crate base64;
 
 mod data;
 
-// cargo run -- --transaction<tx_id> --output<file_name>
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
     let args = Args::parse();
