@@ -10,7 +10,7 @@ mod data;
 // get_and_decode_chunk_data function and subtracting the length/size of each vector of bytes until we reach end_offset - size.
 // The other way(2) is by subtracting the size at the beginning and adding the length/size of each vector of bytes until we reach the
 // end_offset.
-// By commenting *in* line 25, 40-49 and commenting *out* line 27-38 you can run the code that does it the second way(2).
+// By commenting *in* line 25, 39-48 and commenting *out* line 27-38 you can run the code that does it the second way(2).
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
     let args = Args::parse();
@@ -27,25 +27,24 @@ async fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
     let mut chunk = end_offset;
 
     while chunk > start_offset {
-        let mut chunk_data = get_and_decode_chunk_data(chunk).await?;
-
-        if !chunk_data.is_empty() {
-            chunk -= chunk_data.len() as i64;
-            data.append(&mut chunk_data)
-        } else {
-            println!("Cannot find chunk data, make sure input is correct and try again")
+        match get_and_decode_chunk_data(chunk).await {
+            Ok(mut chunk_data) => {
+                chunk -= chunk_data.len() as i64;
+                data.append(&mut chunk_data)
+            }
+            Err(e) => return Err(e),
         }
     }
 
     // while byte < size {
-    //     let mut chunk_data = get_and_decode_chunk_data(start_offset + byte).await?;
-    //     if !chunk_data.is_empty() {
-    //         byte += chunk_data.len() as i64;
-    //         data.append(&mut chunk_data)
-    //     } else {
-    //         println!("Cannot find chunk data, make sure input is correct and try again")
+    //     match get_and_decode_chunk_data(start_offset + byte).await {
+    //         Ok(mut chunk_data) => {
+    //             byte += chunk_data.len() as i64;
+    //             data.append(&mut chunk_data)
+    //         }
+    //         Err(e) => return Err(e),
     //     }
-    //     println!("{}%", (100 * byte / size));
+    //     println!("{} %", (100 * byte / size));
     // }
 
     fs::write(args.output, data)?;
