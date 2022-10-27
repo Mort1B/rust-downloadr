@@ -5,7 +5,7 @@ If you get UnexpectedEof error and you know tx_id is correct then just try again
 
 ### Some "benchmarking"
 
-| Write         | Debug build                   | Release build                |
+| Method        | Debug build                   | Release build                |
 |:------------: |:-----------------------------:| :---------------------------:|
 | Bufwriter(1)  | 134s - 39s - 37s - 192s - 36s | 125s - 33s - 35s - 35s - 34s |
 | Fs::write(1)  | 161s - 149s - 36s - 36s - 127s| 123s - 33s - 35s - 34s - 33s |
