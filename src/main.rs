@@ -14,7 +14,7 @@ lazy_static! {
 // get_and_decode_chunk_data function and subtracting the length/size of each vector of bytes until we reach end_offset - size.
 // The other way(2) is by subtracting the size at the beginning and adding the length/size of each vector of bytes until we reach the
 // end_offset.
-// By commenting *in* line 25, 39-48 and commenting *out* line 27-38 you can run the code that does it the second way(2).
+// By commenting *in* line 29, 43-52 and commenting *out* line 31-41 you can run the code that does it the second way(2).
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
     let args = Args::parse();
