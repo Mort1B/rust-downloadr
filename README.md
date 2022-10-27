@@ -15,9 +15,12 @@ If you get UnexpectedEof error and you know tx_id is correct then just try again
 | Fs::write(2)  | 86s - 10s - 13s - 108s - 10s |
 
 This data does not say much since its only 5 iterations per method. But the outliers must be ignored. 
+
 Method 1 starts with final tx in a chunk, method 2 starts with first tx in a chunk.
+
 Bufwriter writes to file once data is fetched from API in the loop. 
 Fs::write stores data in a vector and writes to file once loop is finished.
+
 "benchmarking" was done by fetching tx: BfOtg-A5EP8RmPQwa7V-fRORQFdUlAM6OYARwori_qE, writing to file "asd.txt" and priting elapsed time to run program.
 
 ### Run:
