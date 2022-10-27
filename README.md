@@ -27,6 +27,6 @@ Fs::write stores data in a vector and writes to file once loop is finished.
 
 ***$ cargo run -- --transaction "K9u_6E9tO8yr6Jx1D_lHz2tRhSIThPrXpmgazFw8BWI" --output "./asd.txt"***
 
-***For a tiny bit better performance build with release flag:***
+***For a better performance build with release flag:***
 
 ***$ cargo run --release -- --transaction "K9u_6E9tO8yr6Jx1D_lHz2tRhSIThPrXpmgazFw8BWI" --output "./asd.txt"***
