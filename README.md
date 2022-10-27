@@ -16,7 +16,7 @@ This data does not say much its only 5 iterations per method.
 Method 1 starts with final tx in a chunk, method 2 starts with first tx in a chunk.
 Bufwriter writes to file once data is fetched from API in the loop. 
 Fs::write stores data in a vector and writes to file once loop is finished.
-"benchmarking" was done by fetching tx: BfOtg-A5EP8RmPQwa7V-fRORQFdUlAM6OYARwori_qE and writing to file "asd.txt" and priting elapsed time to run program.
+"benchmarking" was done by fetching tx: BfOtg-A5EP8RmPQwa7V-fRORQFdUlAM6OYARwori_qE, writing to file "asd.txt" and priting elapsed time to run program.
 
 ### Run:
 
