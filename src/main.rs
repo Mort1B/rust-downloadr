@@ -18,10 +18,10 @@ static HTTP_CLIENT: Lazy<reqwest::Client> = Lazy::new(|| reqwest::Client::new())
 async fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
     let args = Args::parse();
 
-    let result = get_tx_offset_data(&args.transaction).await?;
+    let root = get_tx_offset_data(&args.transaction).await?;
 
-    let size = result.size.parse::<i64>()?;
-    let end_offset = result.offset.parse::<i64>()?;
+    let size = root.size.parse::<i64>()?;
+    let end_offset = root.offset.parse::<i64>()?;
     let start_offset = end_offset - size + 1;
 
     let mut data = Vec::new();
