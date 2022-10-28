@@ -10,9 +10,9 @@ mod data;
 static HTTP_CLIENT: Lazy<reqwest::Client> = Lazy::new(|| reqwest::Client::new());
 
 // There are two ways of doing this, either(1) by starting at the size/ length of the vector we are given from calling the
-// get_and_decode_chunk_data function and subtracting the length/size of each vector of bytes until we reach end_offset - size.
+// get_and_decode_chunk_data function and subtracting the length/size of each vector of bytes until we reach offset - size.
 // The other way(2) is by subtracting the size at the beginning and adding the length/size of each vector of bytes until we reach the
-// end_offset.
+// offset.
 // By commenting *in* line 29, 43-52 and commenting *out* line 31-41 you can run the code that does it the second way(2).
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
@@ -21,13 +21,13 @@ async fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
     let root = get_tx_offset_data(&args.transaction).await?;
 
     let size = root.size.parse::<i64>()?;
-    let end_offset = root.offset.parse::<i64>()?;
-    let start_offset = end_offset - size + 1;
+    let offset = root.offset.parse::<i64>()?;
+    let start_offset = offset - size + 1;
 
     let mut data = Vec::new();
     // let mut byte = 0;
 
-    let mut chunk = end_offset;
+    let mut chunk = offset;
 
     while chunk > start_offset {
         match get_and_decode_chunk_data(chunk).await {
