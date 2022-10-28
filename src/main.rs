@@ -2,14 +2,13 @@ use base64::decode_config;
 use clap::Parser;
 use data::{Args, ChunkData, Root};
 use std::{error::Error, fs};
-use lazy_static::lazy_static;
+use once_cell::sync::Lazy;
 extern crate base64;
 
 mod data;
 
-lazy_static! {
-    static ref HTTP_CLIENT: reqwest::Client = reqwest::Client::new();
-}
+static HTTP_CLIENT: Lazy<reqwest::Client> = Lazy::new(|| reqwest::Client::new());
+
 // There are two ways of doing this, either(1) by starting at the size/ length of the vector we are given from calling the
 // get_and_decode_chunk_data function and subtracting the length/size of each vector of bytes until we reach end_offset - size.
 // The other way(2) is by subtracting the size at the beginning and adding the length/size of each vector of bytes until we reach the
