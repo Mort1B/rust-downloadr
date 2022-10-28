@@ -1,8 +1,6 @@
 # rust-downloadr
 download arweave tx-data in rust by splitting it up in chunks of data and writing the data to file
 
-This solution is faster than the one in nodejs.
-
 If you get UnexpectedEof error and you know tx_id is correct then just try again.
 
 ### Some "benchmarking"
