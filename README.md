@@ -12,7 +12,7 @@ If you get UnexpectedEof error and you know tx_id is correct then just try again
 | Bufwriter(2)  | 10s - 10s - 10s - 35s - 10s |
 | Fs::write(2)  | 86s - 10s - 13s - 108s - 10s |
 
-This data does not say much since its only 5 iterations per method. But the outliers must be ignored. 
+This data does not say much since its only 5 iterations per method. But outliers should be ignored. 
 
 Method 1 starts with final tx in a chunk, method 2 starts with first tx in a chunk.
 
