@@ -1,8 +1,10 @@
+use anyhow::Result;
 use base64::decode_config;
 use clap::Parser;
 use data::{Args, ChunkData, Root};
-use std::{error::Error, fs};
+use std::fs;
 use once_cell::sync::Lazy;
+
 extern crate base64;
 
 mod data;
@@ -15,7 +17,7 @@ static HTTP_CLIENT: Lazy<reqwest::Client> = Lazy::new(|| reqwest::Client::new())
 // offset.
 // By commenting *in* line 29, 43-52 and commenting *out* line 31-41 you can run the code that does it the second way(2).
 #[tokio::main]
-async fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
+async fn main() -> Result<()> {
     let args = Args::parse();
 
     let root = get_tx_offset_data(&args.transaction).await?;
@@ -55,7 +57,7 @@ async fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
     Ok(())
 }
 
-async fn get_tx_offset_data(tx: &str) -> Result<Root, Box<dyn Error + Send + Sync>> {
+async fn get_tx_offset_data(tx: &str) -> Result<Root> {
     let url = format!("https://arweave.net/tx/{}/offset", tx);
     let response = HTTP_CLIENT.get(url.as_str()).send().await?.text().await?;
 
@@ -64,7 +66,7 @@ async fn get_tx_offset_data(tx: &str) -> Result<Root, Box<dyn Error + Send + Syn
     Ok(root)
 }
 
-async fn get_and_decode_chunk_data(offset: i64) -> Result<Vec<u8>, Box<dyn Error + Send + Sync>> {
+async fn get_and_decode_chunk_data(offset: i64) -> Result<Vec<u8>> {
     let url = format!("https://arweave.net/chunk/{}", offset);
     let response = HTTP_CLIENT.get(url.as_str()).send().await?.text().await?;
 
