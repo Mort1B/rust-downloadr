@@ -9,7 +9,7 @@ extern crate base64;
 
 mod data;
 
-static HTTP_CLIENT: Lazy<reqwest::Client> = Lazy::new(|| reqwest::Client::new());
+static HTTP_CLIENT: Lazy<reqwest::Client> = Lazy::new(reqwest::Client::new);
 
 // There are two ways of doing this, either(1) by starting at the size/ length of the vector we are given from calling the
 // get_and_decode_chunk_data function and subtracting the length/size of each vector of bytes until we reach offset - size.
