@@ -7,7 +7,7 @@ pub struct Root {
     pub size: String,
     pub offset: String,
 }
-// Had default
+
 #[derive(Debug, Clone, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ChunkData {
